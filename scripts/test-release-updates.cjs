@@ -9,7 +9,7 @@ const payload = Buffer.from('a test installer, never executed');
 function release(tag = 'v1.2.0') {
   return { tag_name: tag, draft: false, prerelease: false, assets: [{ name: 'AimTrainer-Setup.exe', state: 'uploaded', size: payload.length,
     digest: 'sha256:' + crypto.createHash('sha256').update(payload).digest('hex'),
-    browser_download_url: 'https://github.com/unkwsr/open-aim/releases/download/' + tag + '/AimTrainer-Setup.exe' }] };
+    browser_download_url: 'https://github.com/hygef-v4/open-aim/releases/download/' + tag + '/AimTrainer-Setup.exe' }] };
 }
 function fixture(t, overrides = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'aim-update-test-'));
@@ -25,6 +25,17 @@ function fixture(t, overrides = {}) {
     quit: () => calls.push('quit'), ...overrides };
   return { options, updater: createUpdater(options), calls, data, target, get launched() { return launched; } };
 }
+
+test('fork updates only use hygef-v4 releases and reject upstream installers', async t => {
+  const candidate = release();
+  candidate.assets[0].browser_download_url = 'https://github.com/hygef-v4/open-aim/releases/download/v1.2.0/AimTrainer-Setup.exe';
+  assert.equal(parseRelease(candidate, '1.1.1').version, '1.2.0');
+  candidate.assets[0].browser_download_url = 'https://github.com/unkwsr/open-aim/releases/download/v1.2.0/AimTrainer-Setup.exe';
+  assert.throws(() => parseRelease(candidate, '1.1.1'), /verified Windows installer/);
+  const f = fixture(t);
+  await f.updater.check();
+  assert.equal(f.calls[0], 'https://api.github.com/repos/hygef-v4/open-aim/releases/latest');
+});
 test('stable versions and official uploaded installer with SHA-256 only', () => {
   assert(newer('v1.10.0', '1.9.9')); assert(!newer('v1.1.1', '1.1.1')); assert(!newer('v1.0.0', '1.1.1'));
   assert(!newer('v2.0.0-beta', '1.1.1')); assert(!newer('main', '1.1.1'));

@@ -33,15 +33,15 @@ game files in `site/`.
    ```bash
    git commit -am "chore: release 1.1.0"
    git tag v1.1.0
-   git push --follow-tags
+   git push origin main --follow-tags
    ```
 
-6. **Publish on GitHub:** Releases → Draft a new release → choose tag `v1.1.0`.
+6. **Publish on this fork's GitHub page:** [hygef-v4/open-aim releases](https://github.com/hygef-v4/open-aim/releases) → Draft a new release → choose tag `v1.1.0`.
    Paste the changelog section as the notes, and attach `AimTrainer-Setup.exe` and
    `AimTrainer.exe` from `app/dist/`.
 
-The **Download** links in the README always point to the newest release, so they update
-on their own.
+The README links to this fork's releases page. Source builds remain available before
+the first fork installer is published.
 
 ## Version numbers
 

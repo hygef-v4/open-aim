@@ -6,7 +6,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/unkwsr/open-aim/releases/latest/download/AimTrainer-Setup.exe"><b>Download for Windows</b></a>
+  Personal fork maintained by <a href="https://github.com/hygef-v4/open-aim">hygef-v4</a>,
+  based on <a href="https://github.com/unkwsr/open-aim">unkwsr/open-aim</a>.<br>
+  Includes rendering performance fixes adapted from Harbringe and AverWasTaken.
+  See <a href="docs/performance-patches.md">patch notes and checks</a>.
+</p>
+
+<p align="center">
+  <a href="https://github.com/hygef-v4/open-aim/releases"><b>Fork releases</b></a>
   &nbsp;·&nbsp;
   <a href="#build-your-own-drills">Make a drill</a>
   &nbsp;·&nbsp;
@@ -151,7 +158,7 @@ enemy outlines. Crosshair changes apply immediately in a drill.
 
 ## Get it
 
-1. Download and run **[AimTrainer-Setup.exe](https://github.com/unkwsr/open-aim/releases/latest/download/AimTrainer-Setup.exe)**.
+1. Run this fork [from source](#run-it-from-source), or install `AimTrainer-Setup.exe` from [this fork's releases](https://github.com/hygef-v4/open-aim/releases) when available.
 2. Import your VALORANT settings, or enter your sensitivity through **Sens tools**.
 3. Pick a drill or make your own in Studio.
 
@@ -169,7 +176,7 @@ You need [Node.js](https://nodejs.org) 20+ and the game files in `site/`
 (see [docs/game-files.md](docs/game-files.md)).
 
 ```bash
-git clone https://github.com/unkwsr/open-aim.git
+git clone https://github.com/hygef-v4/open-aim.git
 cd open-aim/app
 npm install
 npm start

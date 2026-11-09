@@ -4,8 +4,8 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 const { spawn } = require("node:child_process");
 
-const API = "https://api.github.com/repos/unkwsr/open-aim/releases/latest";
-const RELEASES = "https://github.com/unkwsr/open-aim/releases";
+const API = "https://api.github.com/repos/hygef-v4/open-aim/releases/latest";
+const RELEASES = "https://github.com/hygef-v4/open-aim/releases";
 const WEEK = 7 * 24 * 60 * 60 * 1000;
 const MAX_INSTALLER = 2 * 1024 * 1024 * 1024;
 
@@ -22,7 +22,7 @@ function newer(candidate, current) {
 function parseRelease(data, current) {
   if (data.draft || data.prerelease || !newer(data.tag_name, current)) return null;
   const asset = data.assets?.find(a => a.name === "AimTrainer-Setup.exe" && a.state === "uploaded");
-  const prefix = "https://github.com/unkwsr/open-aim/releases/download/";
+  const prefix = "https://github.com/hygef-v4/open-aim/releases/download/";
   if (!asset || !asset.browser_download_url?.startsWith(prefix) ||
       !Number.isSafeInteger(asset.size) || asset.size <= 0 || asset.size > MAX_INSTALLER ||
       !/^sha256:[a-f0-9]{64}$/i.test(asset.digest || "")) {

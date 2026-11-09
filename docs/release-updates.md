@@ -1,6 +1,6 @@
 # Desktop releases, installation and removal
 
-The installed Windows app checks `unkwsr/open-aim`'s latest published GitHub release ten seconds after launch, then every six hours while open. It never treats a commit or a merge into `main` as an update. Offline and rate-limit failures do not interrupt training. The notification appears in the lobby and does not take keyboard focus.
+The installed Windows app checks `hygef-v4/open-aim`'s latest published GitHub release ten seconds after launch, then every six hours while open. It never treats a commit or a merge into `main` as an update. Offline and rate-limit failures do not interrupt training. The notification appears in the lobby and does not take keyboard focus. Upstream installers are rejected, so updating cannot silently replace this fork with the original build.
 
 Players can update now, skip that version, or snooze automatic checks for seven days. These choices survive restarts. **Check for updates** in settings bypasses both preferences. Portable and source builds can check manually and open the official releases page; automatic replacement is limited to the installed Windows build.
 

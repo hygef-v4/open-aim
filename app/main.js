@@ -196,6 +196,14 @@ app.commandLine.appendSwitch("force_high_performance_gpu");
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-background-timer-throttling");
 app.commandLine.appendSwitch("disable-backgrounding-occluded-windows");
+// Harbringe's Windows render path; retain driver protections and explicit backend choices.
+if (process.platform === "win32") {
+  if (!app.commandLine.hasSwitch("use-angle")) app.commandLine.appendSwitch("use-angle", "d3d11");
+  app.commandLine.appendSwitch("enable-gpu-rasterization");
+  app.commandLine.appendSwitch("enable-zero-copy");
+  const disabledFeatures = app.commandLine.getSwitchValue("disable-features");
+  app.commandLine.appendSwitch("disable-features", [disabledFeatures, "CalculateNativeWinOcclusion"].filter(Boolean).join(","));
+}
 // Compiled GPU shaders are kept on disk between launches; Chromium's default
 // (~6 MB) is too small for all maps, so shaders were evicted and recompiled,
 // freezing the first round of a map for 0.3-0.4 s.

@@ -3,6 +3,11 @@
 Thanks for helping make the trainer better. This page explains what you can work on and how
 to send your change.
 
+This fork is maintained at [hygef-v4/open-aim](https://github.com/hygef-v4/open-aim).
+Open issues and pull requests there. Push contributions to `origin`, the personal fork;
+`upstream` is only for reading the original project's changes. Keep the original MIT
+notice and credit any patches adapted from other forks.
+
 ## Ways to help
 
 | You want to… | Do this |
